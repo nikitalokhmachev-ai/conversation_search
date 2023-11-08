@@ -33,10 +33,11 @@ class ConversationsController < ApplicationController
 
   def search
     query = params[:query]
+    top_n = params[:top_n].to_i
     @results = if query.blank?
                  []
                else
-                 Conversation.search(query, top_n: 3)
+                 Conversation.search(query, top_n:)
                end
   end
 end
