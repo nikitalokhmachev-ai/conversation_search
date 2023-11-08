@@ -2,13 +2,14 @@ class Conversation < ApplicationRecord
   validates :content, presence: true
   @@stopwords = Stopword.pluck(:word).to_set
   @@searcher = Searcher.new(Conversation.pluck(:token))
+  @@lem = Lemmatizer.new
 
   def tokens
     unigrams = content.downcase.gsub(/[^a-z\s]/, '').split(' ')
     # remove stopwords
     unigrams = unigrams.reject { |token| @@stopwords.include?(token) }
-    # stem
-    unigrams = unigrams.map(&:stem)
+    # lemmatization
+    unigrams = unigrams.map { |token| @@lem.lemma(token) }
     bigrams = unigrams.each_cons(2).map { |a, b| "#{a} #{b}" }
     trigrams = unigrams.each_cons(3).map { |a, b, c| "#{a} #{b} #{c}" }
     unigrams + bigrams + trigrams
