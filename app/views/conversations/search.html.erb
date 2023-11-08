@@ -1,0 +1,16 @@
+<!-- app/views/conversations/search.html.erb -->
+<%= form_tag(search_path, method: :get) do %>
+  <%= text_field_tag :query, params[:query], placeholder: 'Enter your search query' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<% if @results.any? %>
+  <h2>Search Results</h2>
+  <ul>
+    <% @results.each do |conversation| %>
+      <li><p> <%= conversation.id %> </p> | <%= conversation.content %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No results found.</p>
+<% end %>

@@ -1,0 +1,12 @@
+<!-- app/views/conversations/index.html.erb -->
+
+<h1>Ingested Conversations</h1>
+
+<ul>
+  <% @conversations.each_with_index do |conversation,index| %>
+    <li>
+      <h3><%= index %></h3>
+      <p><%= conversation.content %></p>
+    </li>
+  <% end %>
+</ul>

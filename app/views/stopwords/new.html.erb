@@ -1,0 +1,11 @@
+<%= form_tag(stopwords_path, method: :post) do %>
+  <div class="form-group">
+  <div>
+    <%= label_tag :path, 'Stopwords:' %>
+    <%= text_field_tag 'path', nil, class: 'form-control' %>  
+    <small class="text-muted">Enter the path to the directory containing your stopwords.</small>
+  </div>
+  </div>
+
+  <%= submit_tag 'Create Stopwords', class: 'btn btn-primary' %>
+<% end %>

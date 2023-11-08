@@ -1,0 +1,11 @@
+
+<h1>Ingested Stopwords</h1>
+
+<ul>
+  <% @stopwords.each_with_index do |stopword,index| %>
+    <li>
+      <h3><%= index %></h3>
+      <p><%= stopword.word %></p>
+    </li>
+  <% end %>
+</ul>
